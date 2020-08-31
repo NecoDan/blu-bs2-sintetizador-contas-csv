@@ -1,6 +1,7 @@
 package br.com.blu.bs2.sintetizador.contas.csv.service.processador
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil
 import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.diretorioTempSistema
 import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.listaArquivosTransacao
 import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.salvarGravarCSV
@@ -35,7 +36,7 @@ class ProcessarDepositosServiceTest {
         processarDepositoService!!.efetuarProcessamentos(path)
 
         // -- 03_Verificação_Validação
-        //  System.out.println("Contains arquivos a serem lidos no diretorio: " + fileList.size());
+        println("Contains arquivos a serem lidos no diretorio: ");
         println("-------------------------------------------------------------")
     }
 

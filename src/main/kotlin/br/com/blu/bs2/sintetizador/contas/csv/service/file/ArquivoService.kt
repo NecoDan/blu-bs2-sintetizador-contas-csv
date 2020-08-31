@@ -42,7 +42,7 @@ class ArquivoService : IArquivoService {
         return fileInputCsvList
     }
 
-    fun mountArquivoCsvFromFile(file: File?): Arquivo {
+    private fun mountArquivoCsvFromFile(file: File?): Arquivo {
         val arquivo = Arquivo()
         arquivo.fileEntrada = file
         arquivo.path = file!!.path
