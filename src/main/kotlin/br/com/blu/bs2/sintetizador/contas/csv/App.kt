@@ -3,6 +3,7 @@ package br.com.blu.bs2.sintetizador.contas.csv
 import br.com.blu.bs2.sintetizador.contas.csv.service.processador.IProcessarDepositoService
 import br.com.blu.bs2.sintetizador.contas.csv.service.processador.ProcessarDepositoService
 import java.util.*
+import kotlin.system.exitProcess
 
 object App {
     @JvmStatic
@@ -17,6 +18,6 @@ object App {
         } catch (e: Exception) {
             println("Houve erro ao procesar arquivo e gerar depósitos: " + e.localizedMessage)
         }
-        System.exit(0)
+        exitProcess(0)
     }
 }
