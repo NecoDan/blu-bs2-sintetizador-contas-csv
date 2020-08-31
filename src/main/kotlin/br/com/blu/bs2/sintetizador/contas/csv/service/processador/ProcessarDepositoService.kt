@@ -49,7 +49,7 @@ class ProcessarDepositoService : IProcessarDepositoService {
     }
 
     @Throws(IOException::class, ServiceException::class)
-    private fun processarTransacoesPorArquivo(arquivo: Arquivo?): Arquivo? {
+    override fun processarTransacoesPorArquivo(arquivo: Arquivo?): Arquivo? {
         val contaList = factoryContas.getContasPorArquivoEFileCSVReader(arquivo)
         return geraTransacoesDepositoService.gerarDepositosFromTransacoesDasContas(arquivo, contaList)
     }

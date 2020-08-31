@@ -39,6 +39,14 @@ object ParametrosTestesUtil {
                 mountTransacaoFrom("1236-0", BigDecimal.valueOf(100))
         )
 
+    val listaArquivosTransacaoRandomica: List<Transacao>
+        get() = listOf(
+                mountTransacaoFrom("1234-3", RandomicoUtil.gerarValorRandomicoDecimal()),
+                mountTransacaoFrom("1234-3", RandomicoUtil.gerarValorRandomicoDecimal()),
+                mountTransacaoFrom("1235-6", RandomicoUtil.gerarValorRandomicoDecimal()),
+                mountTransacaoFrom("1236-0", RandomicoUtil.gerarValorRandomicoDecimal())
+        )
+
     private fun isPathCaminhoASalvarInvalido(pahtCaminhoASalvar: String): Boolean {
         return Objects.isNull(pahtCaminhoASalvar) || pahtCaminhoASalvar.isEmpty()
     }

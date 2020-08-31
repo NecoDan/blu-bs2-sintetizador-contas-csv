@@ -5,6 +5,7 @@ import br.com.blu.bs2.sintetizador.contas.csv.utils.RandomicoUtil.gerarValorRand
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import java.math.BigDecimal
 
 class RandomicoUtilTest {
     @Before
@@ -36,4 +37,23 @@ class RandomicoUtilTest {
         println("Valor resultado: $valor")
         println("-------------------------------------------------------------")
     }
+
+    @Test
+    fun deveGerarValorBigDecimalRandomicoAte() {
+        println("#TEST: deveGerarValorBigDecimalRandomicoAte: ")
+
+        // -- 01_Cenário
+        val valorMaximo = RandomicoUtil.gerarValorRandomicoDecimal()
+
+        // -- 02_Ação
+        if (valorMaximo != null) {
+            Assert.assertTrue(valorMaximo.toDouble() > 0)
+            println("Valor resultado: $valorMaximo")
+        } else {
+            Assert.assertNull(valorMaximo)
+        }
+
+        println("-------------------------------------------------------------")
+    }
+
 }

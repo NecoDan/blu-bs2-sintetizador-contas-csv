@@ -52,7 +52,7 @@ class FactoryContas : IFactoryContas {
         val linhasRegistro: List<String> = ArrayList(Arrays.asList(*strNumeroConta.split(SEPARADOR_DEFAULT_CONTA.toRegex()).toTypedArray()))
         val mapParameters = getMapParametersFromListaRegistros(linhasRegistro)
         val numeroConta = java.lang.Long.valueOf(mapParameters[POSICAO_NUMERO_CONTA])
-        val digitoVerificador = mapParameters[POSICAO_DIGITO_VERIFICADOR_CONTA]!!.toInt()
+        val digitoVerificador = (mapParameters[POSICAO_DIGITO_VERIFICADOR_CONTA] ?: error("")).toInt()
         val conta = Conta()
         conta.numero = numeroConta
         conta.digito = digitoVerificador
