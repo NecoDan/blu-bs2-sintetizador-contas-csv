@@ -44,10 +44,10 @@ public class GeraTransacoesDepositoService implements IGeraTransacoesDepositoSer
 
             File fileNovoDiretorioSaidaArquivo = ArquivoUtil.criarPathDiretorioInexistente(FileUtils.getFile(strPathArquivoSaida));
             File fileSaida = FileUtils.getFile(strPathArquivoSaida.concat("/").concat(nomeArquivo));
-
             String conteudo = gravarExtraoContaCSVSaidaRelatorio(fileNovoDiretorioSaidaArquivo.getAbsolutePath(), nomeArquivo, extratoContaList);
-            arquivo.setConteudo(conteudo);
+
             arquivo.setFileSaida(fileSaida);
+            arquivo.setConteudo(conteudo);
 
             return arquivo;
         } catch (IOException e) {

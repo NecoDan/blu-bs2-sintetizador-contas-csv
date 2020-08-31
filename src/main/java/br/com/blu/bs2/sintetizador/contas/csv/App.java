@@ -10,7 +10,7 @@ public class App {
         IProcessarDepositoService processarDepositoService = new ProcessarDepositoService();
 
         try {
-            System.out.println("Inicializado com sucesso!");
+            System.out.println("#... Sintetizador Transferências Depósitos ...#");
             Scanner inPathDiretorio = new Scanner(System.in);
             System.out.println("\n Defina a pasta e/ou diretorio com o(s) arquivo(s) CSV a serem processados: ");
 
