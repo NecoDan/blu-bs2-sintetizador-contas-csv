@@ -1,10 +1,14 @@
 package br.com.blu.bs2.sintetizador.contas.csv.model.dominio
 
-import java.util.*
-import java.util.stream.Stream
-
 enum class TipoConta(codigo: Int, digitosVerificador: List<Int>, codigoLiteral: String, descricao: String) {
-    COMUM(0, listOf<Int>(0), "COMUM", "CONTA TIPO COMUM"), PREMIUM(1, Arrays.asList<Int>(1, 2, 3), "PREMIUM", "CONTA TIPO PREMIUM"), EXECUTIVA(3, Arrays.asList<Int>(4, 5, 6, 7, 8), "EXECUTIVA", "CONTA TIPO EXECUTIVA"), SEM_ESPECIFICACAO(4, listOf<Int>(9), "SEM_ESPECIFICACAO", "CONTA SEM ESPECIFICACAO");
+
+    COMUM(0, listOf<Int>(0), "COMUM", "CONTA TIPO COMUM"),
+
+    PREMIUM(1, listOf<Int>(1, 2, 3), "PREMIUM", "CONTA TIPO PREMIUM"),
+
+    EXECUTIVA(3, listOf<Int>(4, 5, 6, 7, 8), "EXECUTIVA", "CONTA TIPO EXECUTIVA"),
+
+    SEM_ESPECIFICACAO(4, listOf<Int>(9), "SEM_ESPECIFICACAO", "CONTA SEM ESPECIFICACAO");
 
     var codigo = 0
         private set
@@ -53,12 +57,15 @@ enum class TipoConta(codigo: Int, digitosVerificador: List<Int>, codigoLiteral: 
     }
 
     companion object {
-//        fun of(digitoVerificador: Int): TipoConta {
-//            return Stream.of(*values())
-//                    .filter { tipoConta: TipoConta -> tipoConta.digitosVerificador!!.contains(digitoVerificador) }
-//                    .findFirst()
-//                    .orElseThrow { IllegalArgumentException() }
-//        }
+        @Throws(IllegalArgumentException::class)
+        fun of(digitoVerificador: Int): TipoConta {
+            var tipoContaResult = SEM_ESPECIFICACAO
+            for (tipoConta in values()) {
+                if (tipoConta.isContemDigitoVerifadorInTipo(digitoVerificador))
+                    tipoContaResult = tipoConta
+            }
+            return tipoContaResult
+        }
     }
 
     init {

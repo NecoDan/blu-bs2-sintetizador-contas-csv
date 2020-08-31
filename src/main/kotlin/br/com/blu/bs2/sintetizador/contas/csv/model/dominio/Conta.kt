@@ -8,6 +8,7 @@ class Conta {
     var digito: Int? = null
     var tipoConta: TipoConta? = null
     private var saldo: BigDecimal? = null
+
     fun getSaldo(): BigDecimal? {
         return saldo
     }
@@ -27,7 +28,8 @@ class Conta {
     }
 
     fun gerarTipoConta() {
-        if (Objects.isNull(digito) || digito!! < 0) return
+        if (Objects.isNull(digito) || digito!! < 0)
+            return
         tipoConta = TipoConta.of(digito!!)
     }
 

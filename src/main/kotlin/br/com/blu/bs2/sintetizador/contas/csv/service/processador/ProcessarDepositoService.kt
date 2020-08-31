@@ -35,7 +35,9 @@ class ProcessarDepositoService : IProcessarDepositoService {
         arquivoList!!.parallelStream().filter { obj: Arquivo? -> Objects.nonNull(obj) }.forEach { arquivo: Arquivo? ->
             try {
                 val arquivoResult = processarTransacoesPorArquivo(arquivo)
-                imprimirResultados(arquivoResult)
+                if (arquivoResult != null) {
+                    imprimirResultados(arquivoResult)
+                }
             } catch (e: IOException) {
                 throw RuntimeException(e.localizedMessage)
             } catch (e: ServiceException) {
@@ -45,7 +47,7 @@ class ProcessarDepositoService : IProcessarDepositoService {
     }
 
     @Throws(IOException::class, ServiceException::class)
-    private fun processarTransacoesPorArquivo(arquivo: Arquivo?): Arquivo {
+    private fun processarTransacoesPorArquivo(arquivo: Arquivo?): Arquivo? {
         val contaList = factoryContas.getContasPorArquivoEFileCSVReader(arquivo)
         return geraTransacoesDepositoService.gerarDepositosFromTransacoesDasContas(arquivo, contaList)
     }
@@ -55,9 +57,10 @@ class ProcessarDepositoService : IProcessarDepositoService {
     }
 
     private fun imprimirResultados(arquivo: Arquivo) {
-        if (Objects.isNull(arquivo)) return
+        if (Objects.isNull(arquivo))
+            return
         println("""
- # Arquivo do {RELATÓRIO} de {SAIDA} gerado com sucesso: ${arquivo.fileSaida!!.absolutePath}""")
+# Arquivo do {RELATÓRIO} de {SAIDA} gerado com sucesso: ${arquivo.fileSaida!!.absolutePath}""")
         println("# REPORT: \n")
         println(arquivo.conteudo)
     }

@@ -1,8 +1,6 @@
 package br.com.blu.bs2.sintetizador.contas.csv.service.strategy
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.dominio.TipoConta
-import java.util.*
-import java.util.stream.Stream
 
 enum class PercentualBonus(val tipoConta: TipoConta, val factoryObterPercentualBonusService: IFactoryObterPercentualBonusService) {
 
@@ -15,12 +13,16 @@ enum class PercentualBonus(val tipoConta: TipoConta, val factoryObterPercentualB
     BONUS_CONTA_EXECUTIVA(TipoConta.EXECUTIVA, BuilderBonusContaExecutivaService());
 
     companion object {
-//        fun of(digitoVerificador: Int): PercentualBonus {
-//            return Stream.of(*values())
-//                    .filter { percentualBonus: PercentualBonus -> Objects.nonNull(percentualBonus.tipoConta) }
-//                    .filter { percentualBonus: PercentualBonus -> percentualBonus.tipoConta.digitosVerificador!!.contains(digitoVerificador) }
-//                    .findFirst()
-//                    .orElseThrow { IllegalArgumentException() }
-//        }
+        @Throws(IllegalArgumentException::class)
+        fun of(digitoVerificador: Int): PercentualBonus {
+            var percentualBonusResult = BONUS_CONTA_NAO_ESPECIFICADA
+
+            for (percentualBonus in values()) {
+                if (percentualBonus.tipoConta.digitosVerificador!!.contains(digitoVerificador))
+                    percentualBonusResult = percentualBonus
+            }
+
+            return percentualBonusResult
+        }
     }
 }

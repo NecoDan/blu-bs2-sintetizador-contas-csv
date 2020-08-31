@@ -48,8 +48,8 @@ class GeraTransacoesDepositoService : IGeraTransacoesDepositoService {
         val extratoConta = ExtratoConta()
         extratoConta.conta = conta
         extratoConta.valorTotalDeposito = conta!!.getSaldo()
-        val percentualBonus = PercentualBonus.of(conta.digito!!)
-        extratoConta.aplicarValorPercentualBonus(percentualBonus)
+        extratoConta.aplicarValorPercentualBonus(PercentualBonus.of(conta.digito!!))
+
         return extratoConta
     }
 
