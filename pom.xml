@@ -26,14 +26,6 @@
             <version>${kotlin.version}</version>
         </dependency>
 
-        <!-- Lombok - Evitar o boilerplate do Java -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Apache Commons Complete Util -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -49,11 +41,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>one.util</groupId>
-            <artifactId>streamex</artifactId>
-            <version>0.7.3</version>
         </dependency>
 
         <!-- Leitura Arquivos CSV-->

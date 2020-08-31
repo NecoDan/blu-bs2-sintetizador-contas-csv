@@ -2,7 +2,7 @@ package br.com.blu.bs2.sintetizador.contas.csv.service.service.arquivo;
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.arquivos.Arquivo;
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo;
-import br.com.blu.bs2.sintetizador.contas.csv.service.arquivo.ArquivoService;
+import br.com.blu.bs2.sintetizador.contas.csv.service.file.ArquivoService;
 import br.com.blu.bs2.sintetizador.contas.csv.service.model.Transacao;
 import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil;
 import br.com.blu.bs2.sintetizador.contas.csv.utils.RandomicoUtil;
