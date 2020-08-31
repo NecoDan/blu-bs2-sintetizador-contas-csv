@@ -5,16 +5,16 @@ import br.com.blu.bs2.sintetizador.contas.csv.model.dominio.Conta;
 import br.com.blu.bs2.sintetizador.contas.csv.model.dominio.ExtratoConta;
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo;
 import br.com.blu.bs2.sintetizador.contas.csv.service.strategy.PercentualBonus;
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ArquivoUtil;
 import br.com.blu.bs2.sintetizador.contas.csv.utils.FormatterUtil;
 import br.com.blu.bs2.sintetizador.contas.csv.utils.exceptions.ServiceException;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.FileUtils;
 
-import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +25,7 @@ public class GeraTransacoesDepositoService implements IGeraTransacoesDepositoSer
     private static final String HEADER_COL_RELATORIO_POS_0 = "Conta";
     private static final String HEADER_COL_RELATORIO_POS_1 = "Depósitos";
     private static final String HEADER_COL_RELATORIO_POS_2 = "Total de Bônus";
+    private static final String PATH_DEFAULT_SAIDA = "out";
 
     @Override
     public Arquivo gerarDepositosFromTransacoes(Arquivo arquivo, List<Conta> contaList) throws ServiceException {
@@ -38,16 +39,15 @@ public class GeraTransacoesDepositoService implements IGeraTransacoesDepositoSer
     @Override
     public Arquivo salvarExtratosContas(Arquivo arquivo, List<ExtratoConta> extratoContaList) throws ServiceException {
         try {
-            String nomeArquivo = arquivo.getFileEntrada().getName()
-                    .replace(".", "_")
-                    .toUpperCase()
-                    .concat("_SAIDA_")
-                    .concat(FormatterUtil.toStringLocalDateFormatada(LocalDateTime.now()))
-                    .concat(".")
-                    .concat(TipoExtensaoArquivo.CSV.getCodigoLiteral());
+            String nomeArquivo = getNomeNovoArquivo(arquivo);
+            String strPathArquivoSaida = arquivo.getFileEntrada().getParent().concat("/").concat(PATH_DEFAULT_SAIDA);
 
-            gravarExtraoContaCSVSaidaRelatorio(arquivo.getFileEntrada().getParent(), nomeArquivo, extratoContaList);
-            arquivo.setFileSaida(FileUtils.getFile(nomeArquivo));
+            File fileNovoDiretorioSaidaArquivo = ArquivoUtil.criarPathDiretorioInexistente(FileUtils.getFile(strPathArquivoSaida));
+            File fileSaida = FileUtils.getFile(strPathArquivoSaida.concat("/").concat(nomeArquivo));
+
+            String conteudo = gravarExtraoContaCSVSaidaRelatorio(fileNovoDiretorioSaidaArquivo.getAbsolutePath(), nomeArquivo, extratoContaList);
+            arquivo.setConteudo(conteudo);
+            arquivo.setFileSaida(fileSaida);
 
             return arquivo;
         } catch (IOException e) {
@@ -62,10 +62,11 @@ public class GeraTransacoesDepositoService implements IGeraTransacoesDepositoSer
         return extratoConta;
     }
 
-    private void gravarExtraoContaCSVSaidaRelatorio(String pahtCaminhoASalvar, String nomeArquivo, List<ExtratoConta> extratoContaList) throws IOException {
+    private String gravarExtraoContaCSVSaidaRelatorio(String pahtCaminhoASalvar, String nomeArquivo, List<ExtratoConta> extratoContaList) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
         try (
-                BufferedWriter writer = Files.newBufferedWriter(Paths.get(pahtCaminhoASalvar + "/" + nomeArquivo));
-                CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(HEADER_COL_RELATORIO_POS_0, HEADER_COL_RELATORIO_POS_1, HEADER_COL_RELATORIO_POS_2).withDelimiter(';'));
+                FileWriter writer = new FileWriter(pahtCaminhoASalvar + "/" + nomeArquivo);
+                CSVPrinter csvPrinter = new CSVPrinter(stringBuilder, CSVFormat.DEFAULT.withHeader(HEADER_COL_RELATORIO_POS_0, HEADER_COL_RELATORIO_POS_1, HEADER_COL_RELATORIO_POS_2).withDelimiter(';'));
         ) {
             extratoContaList.forEach(extratoConta -> {
                 try {
@@ -78,7 +79,20 @@ public class GeraTransacoesDepositoService implements IGeraTransacoesDepositoSer
                     System.out.println(e.getLocalizedMessage());
                 }
             });
-            csvPrinter.flush();
+            writer.write(stringBuilder.toString());
+            writer.flush();
         }
+
+        return stringBuilder.toString();
+    }
+
+    private String getNomeNovoArquivo(Arquivo arquivo) {
+        return arquivo.getFileEntrada().getName()
+                .replace(".", "_")
+                .toUpperCase()
+                .concat("_SAIDA_")
+                .concat(FormatterUtil.toStringLocalDateFormatada(LocalDateTime.now()))
+                .concat(".")
+                .concat(TipoExtensaoArquivo.CSV.getCodigoLiteral());
     }
 }

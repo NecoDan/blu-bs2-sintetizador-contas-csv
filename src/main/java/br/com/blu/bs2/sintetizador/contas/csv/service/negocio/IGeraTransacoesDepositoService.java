@@ -8,6 +8,7 @@ import br.com.blu.bs2.sintetizador.contas.csv.utils.exceptions.ServiceException;
 import java.util.List;
 
 public interface IGeraTransacoesDepositoService {
+
     Arquivo gerarDepositosFromTransacoes(Arquivo arquivo, List<Conta> transacaoList) throws ServiceException;
 
     Arquivo salvarExtratosContas(Arquivo arquivo, List<ExtratoConta> extratoContaList) throws ServiceException;

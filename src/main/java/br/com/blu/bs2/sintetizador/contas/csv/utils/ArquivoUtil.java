@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public final class ArquivoUtil {
 
-    private static final String PATH_DEFAULT_SAIDA = "data/out";
+    public static final String PATH_DEFAULT_SAIDA = "data/out";
 
     private ArquivoUtil() {
     }

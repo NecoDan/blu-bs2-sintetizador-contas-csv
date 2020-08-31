@@ -17,6 +17,6 @@ public class ValidadorService implements IValidadorService {
     @Override
     public void validarContemArquivosObtidosFileDiretorioPadraoEntrada(List<File> fileInputDatList) throws ServiceException {
         if (fileInputDatList.isEmpty())
-            throw new ServiceException("Não foram encontrados arquivos de leitura para entrada de dados. Pasta vazia.");
+            throw new ServiceException("Não foram encontrados arquivos de leitura com a extensão {CSV} para entrada de dados e/ou pasta vazia.");
     }
 }

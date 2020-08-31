@@ -13,4 +13,5 @@ public class Arquivo {
     private String nome;
     private File fileEntrada;
     private File fileSaida;
+    private String conteudo;
 }
