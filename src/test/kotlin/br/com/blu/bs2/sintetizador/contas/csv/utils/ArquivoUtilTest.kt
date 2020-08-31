@@ -1,4 +1,4 @@
-package br.com.blu.bs2.sintetizador.contas.csv.service.utils
+package br.com.blu.bs2.sintetizador.contas.csv.utils
 
 import br.com.blu.bs2.sintetizador.contas.csv.utils.ArquivoUtil.isNotContainsArquivosFileDiretorio
 import org.junit.Assert

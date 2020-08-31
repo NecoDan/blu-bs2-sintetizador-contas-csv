@@ -1,10 +1,10 @@
-package br.com.blu.bs2.sintetizador.contas.csv.service.service.arquivo
+package br.com.blu.bs2.sintetizador.contas.csv.service.arquivo
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo
 import br.com.blu.bs2.sintetizador.contas.csv.service.file.ArquivoService
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.diretorioTempSistema
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.listaArquivosTransacao
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.salvarGravarCSV
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.diretorioTempSistema
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.listaArquivosTransacao
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.salvarGravarCSV
 import br.com.blu.bs2.sintetizador.contas.csv.utils.RandomicoUtil.gerarValorRandomicoLong
 import br.com.blu.bs2.sintetizador.contas.csv.utils.exceptions.ServiceException
 import org.junit.Assert

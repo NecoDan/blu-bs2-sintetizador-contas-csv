@@ -1,6 +1,6 @@
-package br.com.blu.bs2.sintetizador.contas.csv.service.utils
+package br.com.blu.bs2.sintetizador.contas.csv.utils
 
-import br.com.blu.bs2.sintetizador.contas.csv.service.model.Transacao
+import br.com.blu.bs2.sintetizador.contas.csv.model.Transacao
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
 import java.io.File

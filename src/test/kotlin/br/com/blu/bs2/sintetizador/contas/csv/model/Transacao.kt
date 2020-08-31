@@ -1,4 +1,4 @@
-package br.com.blu.bs2.sintetizador.contas.csv.service.model
+package br.com.blu.bs2.sintetizador.contas.csv.model
 
 import java.math.BigDecimal
 

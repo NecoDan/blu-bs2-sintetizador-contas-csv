@@ -1,10 +1,9 @@
-package br.com.blu.bs2.sintetizador.contas.csv.service.service.processador
+package br.com.blu.bs2.sintetizador.contas.csv.service.processador
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo
-import br.com.blu.bs2.sintetizador.contas.csv.service.processador.ProcessarDepositoService
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.diretorioTempSistema
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.listaArquivosTransacao
-import br.com.blu.bs2.sintetizador.contas.csv.service.utils.ParametrosTestesUtil.salvarGravarCSV
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.diretorioTempSistema
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.listaArquivosTransacao
+import br.com.blu.bs2.sintetizador.contas.csv.utils.ParametrosTestesUtil.salvarGravarCSV
 import br.com.blu.bs2.sintetizador.contas.csv.utils.RandomicoUtil.gerarValorRandomicoLong
 import org.junit.Before
 import org.junit.Test
