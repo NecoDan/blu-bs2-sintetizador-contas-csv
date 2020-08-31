@@ -18,7 +18,7 @@ enum class PercentualBonus(val tipoConta: TipoConta, val factoryObterPercentualB
             var percentualBonusResult = BONUS_CONTA_NAO_ESPECIFICADA
 
             for (percentualBonus in values()) {
-                if (percentualBonus.tipoConta.digitosVerificador!!.contains(digitoVerificador))
+                if (percentualBonus.tipoConta.getDigitosVerificador!!.contains(digitoVerificador))
                     percentualBonusResult = percentualBonus
             }
 

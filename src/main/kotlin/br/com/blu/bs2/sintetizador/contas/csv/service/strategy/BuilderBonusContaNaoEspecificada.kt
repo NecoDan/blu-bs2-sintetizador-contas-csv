@@ -5,6 +5,7 @@ import br.com.blu.bs2.sintetizador.contas.csv.service.strategy.PercentualBonus
 import java.math.BigDecimal
 
 class BuilderBonusContaNaoEspecificada : IFactoryObterPercentualBonusService {
+
     override fun isAppliable(conta: Conta?): Boolean {
         return false
     }

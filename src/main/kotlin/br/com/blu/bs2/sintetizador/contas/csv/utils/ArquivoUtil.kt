@@ -34,19 +34,6 @@ object ArquivoUtil {
         return Objects.isNull(extensaoArquivoFiltro) || extensaoArquivoFiltro.isEmpty()
     }
 
-    @Throws(IOException::class)
-    fun gravarArquivo(conteudoArquivo: String?, arquivoNovo: File) {
-        FileWriter(arquivoNovo.absolutePath).use { fileWriter ->
-            fileWriter.write(conteudoArquivo)
-            fileWriter.flush()
-        }
-    }
-
-    fun gerarDiretorioPadraoArquivosSaidaAPartirSistema(): File {
-        val filePathDiretorioSaidaSistema = File(System.getProperty("user.home") + "/" + PATH_DEFAULT_SAIDA)
-        return if (filePathDiretorioSaidaSistema.exists()) filePathDiretorioSaidaSistema else criarPathDiretorioInexistente(filePathDiretorioSaidaSistema)
-    }
-
     fun criarPathDiretorioInexistente(filePathDiretorio: File): File {
         if (!filePathDiretorio.exists()) {
             filePathDiretorio.mkdir()

@@ -30,7 +30,6 @@ class FactoryContas : IFactoryContas {
             }
         }
 
-        // return contaList.stream().filter { obj: Conta? -> Objects.nonNull(obj) }.sorted(Comparator.comparing(Conta::numero)).distinct().collect(Collectors.toList())
         return contaList.stream().filter { obj: Conta? -> Objects.nonNull(obj) }.distinct().collect(Collectors.toList())
     }
 

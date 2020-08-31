@@ -31,7 +31,9 @@ class ProcessarDepositoService : IProcessarDepositoService {
     @Throws(Exception::class)
     override fun efetuarProcessamentosPor(fileCaminhoArquivos: File?) {
         val arquivoList = arquivoService.recuperarArquivosCsvFromFilePath(fileCaminhoArquivos)
+
         if (isNaoContemArquivosAProcessar(arquivoList)) return
+
         arquivoList!!.parallelStream().filter { obj: Arquivo? -> Objects.nonNull(obj) }.forEach { arquivo: Arquivo? ->
             try {
                 val arquivoResult = processarTransacoesPorArquivo(arquivo)

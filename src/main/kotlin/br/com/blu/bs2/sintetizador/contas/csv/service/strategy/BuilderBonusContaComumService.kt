@@ -6,6 +6,7 @@ import java.math.BigDecimal
 import java.util.*
 
 class BuilderBonusContaComumService : IFactoryObterPercentualBonusService {
+
     override fun isAppliable(conta: Conta?): Boolean {
         return Objects.nonNull(conta) && conta!!.isTipoContaIsComum
     }

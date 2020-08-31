@@ -10,13 +10,10 @@ enum class TipoConta(codigo: Int, digitosVerificador: List<Int>, codigoLiteral: 
 
     SEM_ESPECIFICACAO(4, listOf<Int>(9), "SEM_ESPECIFICACAO", "CONTA SEM ESPECIFICACAO");
 
-    var codigo = 0
-        private set
-    var digitosVerificador: List<Int>? = null
-        private set
+    private var codigo = 0
+    private var digitosVerificador: List<Int>? = null
     private var codigoLiteral: String? = null
-    var descricao: String? = null
-        private set
+    private var descricao: String? = null
 
     private fun inicialize(codigo: Int, digitosVerificador: List<Int>, codigoLiteral: String, descricao: String) {
         this.codigo = codigo
@@ -25,14 +22,24 @@ enum class TipoConta(codigo: Int, digitosVerificador: List<Int>, codigoLiteral: 
         this.descricao = descricao
     }
 
-    fun getCodigoLiteral(): String {
-        return codigoLiteral!!.toLowerCase()
-    }
+    val getCodigoLiteral: String
+        get() = codigoLiteral!!.toLowerCase()
+
+    val getCodigo: Int
+        get() = codigo
+
+    val getDescricao: String?
+        get() = descricao
+
+    val getDigitosVerificador: List<Int>?
+        get() = digitosVerificador
 
     val isComum: Boolean
         get() = this == COMUM
+
     val isPremium: Boolean
         get() = this == PREMIUM
+
     val isExecutiva: Boolean
         get() = this == EXECUTIVA
 

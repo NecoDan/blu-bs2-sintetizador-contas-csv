@@ -7,8 +7,11 @@ import java.math.BigDecimal
 import java.util.*
 
 interface IFactoryContas {
+
     @Throws(IOException::class)
     fun getContasPorArquivoEFileCSVReader(arquivo: Arquivo?): List<Conta?>?
+
     fun getContaExistenteFromList(contaList: List<Conta?>?, conta: Conta?, valor: BigDecimal?): Conta?
+
     fun getOptionalContaExistente(contaList: List<Conta?>?, conta: Conta?): Optional<Conta?>?
 }

@@ -31,13 +31,13 @@ class ArquivoServiceTest {
         // -- 01_Cenário
         val transacaoList = listaArquivosTransacao
         val nomeArquivo = gerarValorRandomicoLong().toString() + "." + TipoExtensaoArquivo.CSV.getCodigoLiteral()
-        salvarGravarCSV(null, nomeArquivo, transacaoList)
+        salvarGravarCSV(diretorioTemporarioSistema, nomeArquivo, transacaoList)
 
         // -- 02_Ação
         val fileList = arquivoService!!.findAllFilesPor(diretorioTemporarioSistema)
 
         // -- 03_Verificação_Validação
-        Assert.assertTrue(fileList!!.size > 0)
+        Assert.assertTrue(fileList!!.isNotEmpty())
         println("Contains arquivos a serem lidos no diretorio: " + fileList.size)
         println("-------------------------------------------------------------")
     }
@@ -50,13 +50,13 @@ class ArquivoServiceTest {
         // -- 01_Cenário
         val transacaoList = listaArquivosTransacao
         val nomeArquivo = gerarValorRandomicoLong().toString() + "." + TipoExtensaoArquivo.CSV.getCodigoLiteral()
-        salvarGravarCSV(null, nomeArquivo, transacaoList)
+        salvarGravarCSV(diretorioTemporarioSistema, nomeArquivo, transacaoList)
 
         // -- 02_Ação
         val arquivoList = arquivoService!!.recuperarArquivosCsvFromPath(diretorioTemporarioSistema)
 
         // -- 03_Verificação_Validação
-        Assert.assertTrue(arquivoList!!.size > 0)
+        Assert.assertTrue(arquivoList!!.isNotEmpty())
         println("Contains arquivos a serem lidos no diretorio: " + arquivoList.size)
         println("-------------------------------------------------------------")
     }

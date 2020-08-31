@@ -1,6 +1,7 @@
 package br.com.blu.bs2.sintetizador.contas.csv.service.file
 
 import br.com.blu.bs2.sintetizador.contas.csv.model.arquivos.Arquivo
+import br.com.blu.bs2.sintetizador.contas.csv.model.dominio.TipoConta
 import br.com.blu.bs2.sintetizador.contas.csv.model.enums.TipoExtensaoArquivo
 import br.com.blu.bs2.sintetizador.contas.csv.service.validation.IValidadorService
 import br.com.blu.bs2.sintetizador.contas.csv.service.validation.ValidadorService
@@ -14,7 +15,7 @@ import java.util.stream.Collectors
 
 class ArquivoService : IArquivoService {
 
-    val validadorService: IValidadorService
+    private val validadorService: IValidadorService
 
     @Throws(ServiceException::class)
     override fun recuperarArquivosCsvFromPath(path: String?): List<Arquivo?>? {

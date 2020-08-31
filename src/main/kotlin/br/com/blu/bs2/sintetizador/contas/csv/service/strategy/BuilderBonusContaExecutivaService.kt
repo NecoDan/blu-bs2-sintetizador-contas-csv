@@ -6,6 +6,7 @@ import java.math.BigDecimal
 import java.util.*
 
 class BuilderBonusContaExecutivaService : IFactoryObterPercentualBonusService {
+
     override fun isAppliable(conta: Conta?): Boolean {
         return Objects.nonNull(conta) && conta!!.isTipoContaIsExecutiva
     }

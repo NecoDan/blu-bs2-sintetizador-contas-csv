@@ -1,15 +1,11 @@
 package br.com.blu.bs2.sintetizador.contas.csv.model.enums
 
-import java.util.stream.Stream
-
 enum class TipoExtensaoArquivo(codigo: Int, codigoLiteral: String, descricao: String) {
     CSV(1, "CSV", "TIPO EXTENSAO ARQUIVO CSV"), TXT(2, "TXT", "TIPO EXTENSAO ARQUIVO TXT"), DAT(3, "DAT", "TIPO EXTENSAO ARQUIVO DAT");
 
-    var codigo = 0
-        private set
+    private var codigo = 0
     private var codigoLiteral: String? = null
-    var descricao: String? = null
-        private set
+    private var descricao: String? = null
 
     private fun inicialize(codigo: Int, codigoLiteral: String, descricao: String) {
         this.codigo = codigo
@@ -29,12 +25,14 @@ enum class TipoExtensaoArquivo(codigo: Int, codigoLiteral: String, descricao: St
         get() = this == DAT
 
     companion object {
-//        fun of(codigo: Int): TipoExtensaoArquivo {
-//            return Stream.of(*values())
-//                    .filter { tipoExtensaoArquivo: TipoExtensaoArquivo -> tipoExtensaoArquivo.codigo == codigo }
-//                    .findFirst()
-//                    .orElseThrow { IllegalArgumentException() }
-//        }
+        @Throws(IllegalArgumentException::class)
+        fun of(codigo: Int): TipoExtensaoArquivo {
+            for (tipoExtensaoArquivo in values()) {
+                if (tipoExtensaoArquivo.codigo == codigo)
+                    return tipoExtensaoArquivo
+            }
+            throw IllegalArgumentException(String.format("Código do Tipo Extensão Arquivo inválido: %d", codigo))
+        }
     }
 
     init {

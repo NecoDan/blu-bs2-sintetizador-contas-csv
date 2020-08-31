@@ -11,6 +11,7 @@ class Arquivo {
     var conteudo: String? = null
 
     constructor() {}
+
     constructor(pathCompleto: String?, path: String?, nome: String?, fileEntrada: File?, fileSaida: File?, conteudo: String?) {
         this.pathCompleto = pathCompleto
         this.path = path

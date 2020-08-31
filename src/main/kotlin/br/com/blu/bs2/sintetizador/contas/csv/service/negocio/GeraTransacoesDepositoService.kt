@@ -23,7 +23,9 @@ class GeraTransacoesDepositoService : IGeraTransacoesDepositoService {
 
     @Throws(ServiceException::class)
     override fun gerarDepositosFromTransacoesDasContas(arquivo: Arquivo?, contaList: List<Conta?>?): Arquivo? {
-        if (Objects.isNull(contaList) || contaList!!.isEmpty()) throw ServiceException("Não existem contas a serem processadas ou a efetuar novas transações de depósitos.")
+        if (Objects.isNull(contaList) || contaList!!.isEmpty())
+            throw ServiceException("Não existem contas a serem processadas ou a efetuar novas transações de depósitos.")
+
         val extratoContaList = contaList.stream().filter { obj: Conta? -> Objects.nonNull(obj) }.map { conta: Conta? -> montarExtratoContaFrom(conta) }.collect(Collectors.toList())
         return salvarExtratosContas(arquivo, extratoContaList)
     }

@@ -5,6 +5,7 @@ import br.com.blu.bs2.sintetizador.contas.csv.utils.exceptions.ServiceException
 import java.io.File
 
 interface IArquivoService {
+
     @Throws(ServiceException::class)
     fun recuperarArquivosCsvFromPath(path: String?): List<Arquivo?>?
 
